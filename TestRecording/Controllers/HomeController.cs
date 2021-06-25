@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace TestRecording.Controllers
@@ -15,7 +12,11 @@ namespace TestRecording.Controllers
         }
 
 
+
+
         // ---/RecordRTC/PostRecordedAudioVideo
+
+       // [AllowFileSize(FileSize = 5 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is 5 MB")]
         [HttpPost]
         public ActionResult PostRecordedAudioVideo()
         {

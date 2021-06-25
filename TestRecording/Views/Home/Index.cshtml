@@ -150,7 +150,7 @@
 
                     var source = document.createElement('source');
                     source.src = document.location.origin + '/uploads/' + fName.replace(/"/g, '');
-                    console.log('This is location'+ source.src);
+                    console.log('This is location' + source.src);
                     source.type = 'video/webm; codecs="vp8, vorbis"';
 
                     mediaElement.appendChild(source);
@@ -175,17 +175,10 @@
 
             var recordVideo;
             record.onclick = function () {
-                record.disabled = true;
 
-                navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-                navigator.getUserMedia({
-                    audio: true,
-                    video: true
-                }, function (stream) {
+                navigator.mediaDevices.getDisplayMedia({ video: true, audio: false }).then(function (stream) {
 
-                    var st = new MediaStream(stream);
-
-                    preview.srcObject = st;//window.URL.createObjectURL(stream);
+                    preview.srcObject = stream;
                     preview.play();
 
                     recordVideo = RecordRTC(stream, {
@@ -197,9 +190,35 @@
                     recordVideo.startRecording();
 
                     stop.disabled = false;
-                }, function (error) {
-                    //  alert(error.toString());
+
                 });
+
+
+                record.disabled = true;
+
+                //navigator.getDisplayrMedia = navigator.getDisplayrMedia || navigator.mozgetDisplayrMedia || navigator.webkitgetDisplayrMedia;
+                //navigator.getDisplayrMedia({
+                //    audio: true,
+                //    video: true
+                //}, function (stream) {
+
+                //    var st = new MediaStream(stream);
+
+                //    preview.srcObject = st;//window.URL.createObjectURL(stream);
+                //    preview.play();
+
+                //    recordVideo = RecordRTC(stream, {
+                //        type: 'video'
+                //    });
+                //    // alert('start recording');
+                //    console.log('start recording');
+
+                //    recordVideo.startRecording();
+
+                //    stop.disabled = false;
+                //}, function (error) {
+                //    //  alert(error.toString());
+                //});
             };
 
             var fileName;
