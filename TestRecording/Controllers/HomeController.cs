@@ -16,16 +16,19 @@ namespace TestRecording.Controllers
 
         // ---/RecordRTC/PostRecordedAudioVideo
 
-       // [AllowFileSize(FileSize = 5 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is 5 MB")]
+        // [AllowFileSize(FileSize = 5 * 1024 * 1024, ErrorMessage = "Maximum allowed file size is 5 MB")]
         [HttpPost]
         public ActionResult PostRecordedAudioVideo()
         {
+
             foreach (string upload in Request.Files)
             {
                 var path = AppDomain.CurrentDomain.BaseDirectory + @"uploads\";
                 var file = Request.Files[upload];
                 if (file == null) continue;
-                file.SaveAs(Path.Combine(path, Request.Form[0]));
+                string fD = Request.Form[0];
+                var fullpath = Path.Combine(path, fD);
+                file.SaveAs(Path.Combine(path,fD ));
             }
             return Json(Request.Form[0]);
         }

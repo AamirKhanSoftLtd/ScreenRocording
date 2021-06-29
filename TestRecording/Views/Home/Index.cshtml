@@ -148,6 +148,9 @@
                     container.appendChild(document.createElement('hr'));
                     var mediaElement = document.createElement('video');
 
+
+                    var d = new Date();
+                    var filename = "ClassRecording_28062021" ;
                     var source = document.createElement('source');
                     source.src = document.location.origin + '/uploads/' + fName.replace(/"/g, '');
                     console.log('This is location' + source.src);
@@ -196,29 +199,6 @@
 
                 record.disabled = true;
 
-                //navigator.getDisplayrMedia = navigator.getDisplayrMedia || navigator.mozgetDisplayrMedia || navigator.webkitgetDisplayrMedia;
-                //navigator.getDisplayrMedia({
-                //    audio: true,
-                //    video: true
-                //}, function (stream) {
-
-                //    var st = new MediaStream(stream);
-
-                //    preview.srcObject = st;//window.URL.createObjectURL(stream);
-                //    preview.play();
-
-                //    recordVideo = RecordRTC(stream, {
-                //        type: 'video'
-                //    });
-                //    // alert('start recording');
-                //    console.log('start recording');
-
-                //    recordVideo.startRecording();
-
-                //    stop.disabled = false;
-                //}, function (error) {
-                //    //  alert(error.toString());
-                //});
             };
 
             var fileName;
@@ -228,7 +208,7 @@
 
                 preview.src = '';
 
-                fileName = (Math.round(Math.random() * 99999999) + 99999999) + '.webm';
+                fileName = "ClassRecording_28062021.webm";//(Math.round(Math.random() * 99999999) + 99999999) + '.webm';
 
                 recordVideo.stopRecording(function () {
                     PostBlob(recordVideo.getBlob());
@@ -238,7 +218,6 @@
 
                 deleteFiles.disabled = false;
 
-                alert('recording stoped');
                 console.log('recording stoped');
             };
 
@@ -287,44 +266,16 @@
                 request.send(data);
             }
 
-            window.onbeforeunload = function () {
-                if (!!fileName) {
-                    deleteAudioVideoFiles();
-                    return 'It seems that you\'ve not deleted audio/video files from the server.';
-                }
-            };</script>
+            //window.onbeforeunload = function () {
+            //    if (!!fileName) {
+            //        deleteAudioVideoFiles();
+            //        return 'It seems that you\'ve not deleted audio/video files from the server.';
+            //    }
+            //};
 
-        @*<section class="experiment">
-                <p>
-                    RecordRTC is MIT licensed on Github! <a href="https://github.com/muaz-khan/RecordRTC" target="_blank">Documentation</a>
-                </p>
-            </section>
+        </script>
 
-            <section class="experiment">
-                <h2 class="header" id="feedback">Feedback</h2>
-                <div>
-                    <textarea id="message" style="border: 1px solid rgb(189, 189, 189); height: 8em; margin: .2em; outline: none; resize: vertical; width: 98%;" placeholder="Have any message? Suggestions or something went wrong?"></textarea>
-                </div>
-                <button id="send-message" style="font-size: 1em;">Send Message</button><small style="margin-left: 1em;">Enter your email too; if you want "direct" reply!</small>
-            </section>
-
-            <section class="experiment own-widgets latest-commits">
-                <h2 class="header" id="updates" style="color: red;padding-bottom: .1em;"><a href="https://github.com/muaz-khan/RecordRTC/commits/master" target="_blank">Latest Updates</a></h2>
-                <div id="github-commits"></div>
-            </section>*@
-    </article>
-
-    @*<a href="https://github.com/muaz-khan/RecordRTC/tree/master/RecordRTC-to-ASPNETMVC" class="fork-left"></a>
-
-        <footer>
-            <p>
-                <a href="https://www.webrtc-experiment.com/">WebRTC Experiments</a>
-                © <a href="https://plus.google.com/+MuazKhan" rel="author" target="_blank">Muaz Khan</a>
-                <a href="mailto:muazkh@gmail.com" target="_blank">muazkh@gmail.com</a>
-            </p>
-        </footer>*@
-
-    <!-- commits.js is useless for you! -->
+   
     <script src="https://cdn.webrtc-experiment.com/commits.js" async></script>
 </body>
 </html>
